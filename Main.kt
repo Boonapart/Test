@@ -1,3 +1,4 @@
 fun main() {
- println("Main")
+ println("Main 123")
+ print("Test")
 }
