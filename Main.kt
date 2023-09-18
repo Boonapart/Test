@@ -1,3 +1,6 @@
 fun main() {
-println("fasdfdf")
+    println("Koza")
+    println("Balan")
+    println("Jaba")
+    println("aaaahahah")
 }
