@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Моя Додаток</string>
+    <string g = "sd">sss</string>
+    <string name="welcome_message">Ласкаво просимо до мого додатку!</string>
+    <string name="button_label">Натисніть кнопку</string>
+
+</resources>
