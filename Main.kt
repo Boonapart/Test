@@ -1,9 +1,12 @@
+import EnemiesInitial.Enemies
 import HeroInitial.Heroes
 import Menu.MenuInterface
 
 fun main() {
-var objectMenuInterface = MenuInterface()
-    var objectHeroInitial = Heroes()
+val objectMenuInterface = MenuInterface()
+    val objectHeroInitial = Heroes()
     objectHeroInitial.InitialHero()
+    val objectEnemiesInitial = Enemies()
+    objectEnemiesInitial.InitialBosses()
     objectMenuInterface.interfaceSimple()
 }
