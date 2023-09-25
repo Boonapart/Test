@@ -54,6 +54,7 @@ class FightArena {
             }
 
         }while (game != true)
+        println(1)
 
 
     }
