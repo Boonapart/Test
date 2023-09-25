@@ -20,8 +20,8 @@ class MenuInterface {
                 }
                 3 -> {
                 }
-                4 -> { objectFightArena.fight()
-
+                4 -> {
+                    objectFightArena.fight()
                 }
             }
         } while (choice != 4)

@@ -1,4 +1,5 @@
 package Fight
+
 import EnemiesInitial.damageEnemiesList
 import EnemiesInitial.hpEnemiesList
 import EnemiesInitial.nameEnemiesList
@@ -7,32 +8,52 @@ import HeroInitial.hpHeroesList
 import HeroInitial.tipeOfHeroesList
 
 
+@Suppress("UNUSED_CHANGED_VALUE")
 class FightArena {
+    var numberOfBoss: Int = 0
 
     fun fight() {
-        for (heroes in tipeOfHeroesList)
-        {
-            println(heroes.toString())
-        }
-        var choiceHero : Int = readln().toInt()
-        println("Початок битви.\nПервий босс ${nameEnemiesList[0]}\nЗдоров'я босса :${hpEnemiesList[0]}")
-        var round : Int = 1
+
         do {
+            println("Оберіть героя :")
+            for (heroes in tipeOfHeroesList) {
+                println(heroes.toString())
+            }
+            var choiceHero: Int = readln().toInt() - 1
 
-            println("Раунд $round. ${hpHeroesList[choiceHero]} наносить удар.")
-            hpEnemiesList[0] -= damageHeroesList[choiceHero]
-            println("Здоров'я босса : ${hpEnemiesList[0]}\n${nameEnemiesList[0]} наносить удар.")
-            hpHeroesList[choiceHero] -= damageEnemiesList[0]
-            round++
-        }while (hpHeroesList[choiceHero] != 0 && hpEnemiesList[0] != 0)
-        if (hpHeroesList[choiceHero] <= 0) {
-            println("Ви зазнали поразки, бездарь :(")
-        }
-        else {
-            println("Ви перемогли, вітаю!")
-        }
+            println("Початок битви.\nПервий босс - ${nameEnemiesList[numberOfBoss]}\nЗдоров'я босса :${hpEnemiesList[numberOfBoss]}\n Сила аткаи босса : ${damageEnemiesList[numberOfBoss]}")
+            var round: Int = 1
+            do {
+                println("1 - почати битву")
+                var choice: Int = readln().toInt()
 
+                when (choice) {
+                    1 -> {
+                        println("Раунд $round. ${hpHeroesList[choiceHero]} наносить удар.")
+                        hpEnemiesList[numberOfBoss] -= damageHeroesList[choiceHero]
+                        println("Здоров'я босса : ${hpEnemiesList[numberOfBoss]}\n${nameEnemiesList[numberOfBoss]} наносить удар.")
+                        hpHeroesList[choiceHero] -= damageEnemiesList[numberOfBoss]
+                        println("Ваше здоров'я : ${hpHeroesList[choiceHero]}")
+                        round++
+                    }
+                }
+                if (hpHeroesList[choiceHero] <= 0) {
+                    hpHeroesList[choiceHero] = 0
+                } else if (hpEnemiesList[numberOfBoss] <= 0) {
+                    hpEnemiesList[numberOfBoss] = 0
+                }
 
+            } while (hpEnemiesList[numberOfBoss] != 0 && hpHeroesList[choiceHero] != 0)
+            numberOfBoss++
+            var game: Boolean = true
+            if (hpHeroesList[choiceHero] <= 0) {
+                println("Ви зазнали поразки, бездарь :(")
+                game= false
+            } else {
+                println("Ви перемогли, вітаю!")
+            }
+
+        }while (game != true)
 
 
     }
