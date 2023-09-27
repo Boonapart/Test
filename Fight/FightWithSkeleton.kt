@@ -4,10 +4,10 @@ import HeroInitial.*
 import EnemiesInitial.*
 import kotlin.random.Random
 
-var targetHeroHp: Double = 0.0
-var targetHeroDamage: Double = 0.0
-var targetEnemyHp: Double = 0.0
-var targetEnemyDamage: Double = 0.0
+var targetHeroHp: Int = 0
+var targetHeroDamage: Int = 0
+var targetEnemyHp: Int = 0
+var targetEnemyDamage: Int = 0
 var randomInRangeDamage: Double = 0.0
 var bonusDamage: Double = 1.0
 var randomInRangeDodge: Double = 0.0
@@ -22,29 +22,29 @@ class FightWithSkeleton {
         var choiceHero: Int = readln().toInt() - 1
         when (choiceHero) {
             0 -> {
-                targetHeroHp = heroWarriorList[hpHeroWarrior] as Double
-                targetHeroDamage = heroWarriorList[damageHeroWarrior] as Double
+                targetHeroHp = heroWarriorList[hpHeroWarrior] as Int
+                targetHeroDamage = heroWarriorList[damageHeroWarrior] as Int
             }
 
             1 -> {
-                targetHeroHp = heroSniperList[nameHeroSniper] as Double
-                targetHeroDamage = heroSniperList[damageHeroSniper] as Double
+                targetHeroHp = heroSniperList[hpHeroSniper] as Int
+                targetHeroDamage = heroSniperList[damageHeroSniper] as Int
             }
 
             2 -> {
-                targetHeroHp = heroMageList[nameHeroMage] as Double
-                targetHeroDamage = heroMageList[damageHeroMage] as Double
+                targetHeroHp = heroMageList[hpHeroMage] as Int
+                targetHeroDamage = heroMageList[damageHeroMage] as Int
             }
         }
         print("Початок битви.\nВаш противник - ${enemySkeletonList[nameEnemySkeleton]}" +
                 "\nЗдоров'я : ${enemySkeletonList[hpEnemySkeleton]}" +
                 "\nСила атки : ${enemySkeletonList[damageEnemySkeleton]}")
-        targetEnemyHp = enemySkeletonList[hpEnemySkeleton] as Double
-        targetEnemyDamage = enemySkeletonList[damageEnemySkeleton] as Double
+        targetEnemyHp = enemySkeletonList[hpEnemySkeleton] as Int
+        targetEnemyDamage = enemySkeletonList[damageEnemySkeleton] as Int
         randomInRangeDamage = Random.nextDouble(0.920, 1.120)
         do {
             var round: Int = 1
-            println("Раун $round." +
+            println("\nРаун $round." +
                     "\nВиберіть хід :" +
                     "\n1 -> Атакувати" +
                     "\n2 -> Блокувати" +
@@ -52,7 +52,7 @@ class FightWithSkeleton {
             var choiceAction: Int = readln().toInt()
             when (choiceAction) {
                 1 -> {
-                    targetEnemyHp -= targetHeroDamage * randomInRangeDamage * bonusDamage
+                    targetEnemyHp -= targetHeroDamage * bonusDamage.toInt()
                     println("Ви нанесли удар.\nЗдоров'я ${enemySkeletonList[nameEnemySkeleton]} = $targetEnemyHp : ")
                     targetHeroHp -= targetEnemyDamage
                     println("${enemySkeletonList[nameEnemySkeleton]} завдає удару.\nВаше здоров'я становить : ${targetHeroHp}")
@@ -60,28 +60,32 @@ class FightWithSkeleton {
                 }
 
                 2 -> {
-                    targetHeroHp -= targetEnemyDamage * 0.5
+                    targetHeroHp -= targetEnemyDamage / 2
                     bonusDamage = 1.5
-                    print("Ви заблокували удар, цим зменшили завдану шкоду\nта ваша наступна атака завдасть додаткової шкоди.\nВаше здоров'я становить : ${targetHeroHp}")
+                    println("Ви заблокували удар, цим зменшили завдану шкоду\nта ваша наступна атака завдасть додаткової шкоди.\nВаше здоров'я становить : ${targetHeroHp}")
                 }
+
                 3 -> {
                     randomInRangeDodge = Random.nextDouble(0.0, 24.0)
                     if (randomInRangeDamage <= 17) {
                         targetHeroHp -= 0
                         println("Ви ухилились від атаки.")
-                    }
-                    else {
+                    } else {
                         targetHeroHp -= targetEnemyDamage
                         println("Ви ухилились від атаки.\nВаше здоров'я становить : ${targetHeroHp}")
+
 
                     }
                 }
             }
-            println("Щоб ерейти до наступного раунду, натисніть Enter.")
+
+            println("\nЩоб ерейти до наступного раунду, натисніть Enter.")
             readln()
+            round + 1
 
 
-        } while (targetEnemyHp <= 0 || targetHeroHp <= 0)
+        } while (targetEnemyHp <= 0 && targetHeroHp <= 0)
+        println("ya dayn")
 
     }
 }
