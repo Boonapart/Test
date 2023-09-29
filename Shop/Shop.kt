@@ -1,0 +1,5 @@
+package Shop
+
+class Shop {
+
+}
