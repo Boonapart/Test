@@ -1,4 +1,1 @@
 package Fight
-
-class FightWithOgre {
-}

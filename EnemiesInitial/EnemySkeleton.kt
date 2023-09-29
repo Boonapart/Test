@@ -9,7 +9,7 @@ var damageEnemySkeleton: Int = 0
 
 class EnemySkeleton {
     fun InitialEnemySkeleton() {
-        enemySkeletonList = mutableListOf("Скелет Васька", 150.0, 100.0, 15.0)
+        enemySkeletonList = mutableListOf("Скелет Васька", 150, 100, 15)
         nameEnemySkeleton = 0
         hpEnemySkeleton = 1
         mpEnemySkeleton = 2
